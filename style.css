@@ -4,7 +4,7 @@
   --accent-2: #3b2a58;
   --muted: #bfb3d6;
   --overlay: rgb(48, 21, 65);
-  --overlay-w-opacity: rgba(0, 0, 0, 0.712);
+  --overlay-w-opacity: rgba(0, 0, 0, 0.7);
   --radius: 14px;
 }
 
@@ -23,22 +23,49 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 80px; /* ADD THIS LINE */
 }
 
-.hero video {
+.hero {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.hero iframe {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -100;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 1;
+}
+
+/* Ensure it covers the full width on all screens */
+@media (max-aspect-ratio: 16/9) {
+  .hero iframe {
+    height: 56.25vw; /* 16:9 aspect ratio */
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .hero iframe {
+    width: 177.78vh; /* 16:9 aspect ratio */
+  }
 }
 
 .color-overlay {
   position: absolute;
   inset: 0;
   background: var(--overlay);
-  opacity: 0.9;
+  opacity: 0.6;
   z-index: 2;
 }
 
@@ -51,7 +78,7 @@ body {
 }
 
 .topnav {
-  position: absolute;
+  position: fixed; /* CHANGE FROM absolute */
   top: 20px;
   left: 24px;
   right: 24px;
@@ -59,6 +86,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(11, 8, 16, 0.8); /* ADD */
+  backdrop-filter: blur(10px); /* ADD */
+  padding: 12px 20px; /* ADD */
+  border-radius: 12px; /* ADD */
 }
 
 .brand {
@@ -373,9 +404,10 @@ footer {
 
 /* Extra small devices (phones) */
 @media (max-width: 480px) {
-  .hero {
+.hero {
     height: 45vh;
     min-height: 350px;
+    padding-top: 110px; /* ADD THIS LINE */
   }
   
   .content {
@@ -441,11 +473,88 @@ footer {
 
 /* Landscape phones */
 @media (max-width: 768px) and (orientation: landscape) {
-  .hero {
-    height: 80vh;
+.hero {
+    height: 50vh;
+    min-height: 400px;
+    padding-top: 100px; /* ADD THIS LINE */
+  }
+  .topnav {
+    top: 15px;
+    left: 16px;
+    right: 16px;
+    padding: 10px 16px; /* ADD THIS LINE */
   }
   
   .content {
     padding: 20px;
   }
+}
+
+/* ===== ANIMATION STYLES ===== */
+
+/* Fade in elements on scroll */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-element.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modal animations */
+.modal-backdrop {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.modal-show {
+  opacity: 1;
+}
+
+.modal-backdrop.modal-show .custom-modal {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card initial state for stagger animation */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Smooth details expansion */
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+}
+
+.card.open .details {
+  max-height: 500px;
+  margin-top: 10px;
+}
+
+/* Navigation scroll effect */
+.topnav.scrolled {
+  background: rgba(11, 8, 16, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .expand {
+  transition: all 0.3s ease;
 }
