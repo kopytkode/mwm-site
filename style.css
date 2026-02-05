@@ -1,0 +1,451 @@
+:root {
+  --bg: #0b0810;
+  --accent-1: #6b2f7c;
+  --accent-2: #3b2a58;
+  --muted: #bfb3d6;
+  --overlay: rgb(48, 21, 65);
+  --overlay-w-opacity: rgba(0, 0, 0, 0.712);
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -100;
+}
+
+.color-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.content {
+  background: var(--overlay-w-opacity);
+  width: 65%;
+  margin: 0 auto;
+  padding: 50px;
+  z-index: 100;
+}
+
+.topnav {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-weight: 700;
+  color: white;
+  font-size: larger;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+}
+
+.navlinks a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navlinks a:hover {
+  background: var(--accent-1);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 47, 124, 0.3);
+}
+
+/* Hide menu toggle - not needed */
+.menu-toggle {
+  display: none;
+}
+
+/* Works Section */
+.works-section {
+  margin-top: 100px;
+}
+
+.works-section h2 {
+  color: white;
+}
+
+.headshot {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* The purple circle behind the image */
+.headshot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent-1);
+  transform: translate(20px, 20px);
+  z-index: -1;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Image styling */
+.headshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  z-index: 2;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* Optional hover effect */
+.headshot:hover::before {
+  transform: translate(14px, 14px);
+  background: var(--accent-2);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius);
+  color: var(--muted);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.thumb {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+  height: 160px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.expand {
+  background: var(--accent-1);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.expand:hover {
+  background: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+.details {
+  display: none;
+  margin-top: 10px;
+}
+
+.card.open .details {
+  display: block;
+}
+
+/* About Section */
+.about .bio,
+.about aside {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  max-width: 720px;
+  text-align: justify;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  text-align: center;
+  padding: 30px 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-social {
+  margin-top: 10px;
+}
+
+.footer-social a {
+  color: var(--accent-1);
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--accent-2);
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.modal {
+  background: #1a1124;
+  padding: 24px;
+  border-radius: var(--radius);
+  color: white;
+  width: 90%;
+  max-width: 480px;
+}
+
+.custom-modal {
+  background: #1a1124;
+  padding: 24px;
+  border-radius: var(--radius);
+  color: white;
+  width: 90%;
+  max-width: 480px;
+  z-index: 1000;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet and smaller devices */
+@media (max-width: 768px) {
+  /* Navigation adjustments */
+  .topnav {
+    top: 15px;
+    left: 16px;
+    right: 16px;
+  }
+  
+  /* Hide all nav links except contact on mobile */
+  .navlinks a {
+    display: none;
+  }
+  
+  /* Show only the contact link/button */
+  .navlinks a:last-child {
+    display: block;
+    margin-left: 0;
+    padding: 10px 20px;
+    background: var(--accent-1);
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .navlinks a:last-child:hover {
+    background: var(--accent-2);
+    transform: translateY(-2px);
+  }
+  
+  /* Hero adjustments */
+  .hero {
+    height: 50vh;
+    min-height: 400px;
+  }
+  
+  .content {
+    width: 90%;
+    padding: 30px 20px;
+    margin-top: 60px; /* Push content down to avoid nav overlap */
+  }
+  
+  /* Headshot sizing */
+  .headshot {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  .headshot::before {
+    transform: translate(12px, 12px);
+  }
+  
+  .headshot:hover::before {
+    transform: translate(8px, 8px);
+  }
+  
+  /* Works section */
+  .works-section {
+    margin-top: 60px;
+    padding: 0 16px;
+  }
+  
+  .works-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Cards - full width on mobile */
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .thumb {
+    height: 120px;
+    font-size: 0.9rem;
+  }
+  
+  /* About section */
+  .about .bio,
+  .about aside {
+    padding: 16px;
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  /* Modal adjustments */
+  .modal,
+  .custom-modal {
+    width: 95%;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 20px 16px;
+    margin-top: 40px;
+  }
+  
+  .footer-social a {
+    font-size: 1.3rem;
+    margin: 0 8px;
+  }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 480px) {
+  .hero {
+    height: 45vh;
+    min-height: 350px;
+  }
+  
+  .content {
+    width: 95%;
+    padding: 20px 15px;
+    margin-top: 70px; /* Extra space for smaller screens */
+  }
+  
+  .brand {
+    font-size: 1rem;
+  }
+  
+  /* Contact button styling for small screens */
+  .navlinks a:last-child {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .headshot {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .headshot::before {
+    transform: translate(8px, 8px);
+  }
+  
+  .headshot:hover::before {
+    transform: translate(6px, 6px);
+  }
+  
+  .works-section {
+    margin-top: 40px;
+    padding: 0 12px;
+  }
+  
+  .works-section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .thumb {
+    height: 100px;
+    font-size: 0.85rem;
+  }
+  
+  .expand {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .about .bio,
+  .about aside {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+  
+  .footer-social a {
+    font-size: 1.2rem;
+    margin: 0 6px;
+  }
+}
+
+/* Landscape phones */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    height: 80vh;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+}
