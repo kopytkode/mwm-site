@@ -80,13 +80,12 @@ body {
 .topnav {
   position: fixed; /* CHANGE FROM absolute */
   top: 20px;
-  left: 24px;
-  right: 24px;
+  width:80%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(11, 8, 16, 0.8); /* ADD */
+  background: var(--accent-2);
   backdrop-filter: blur(10px); /* ADD */
   padding: 12px 20px; /* ADD */
   border-radius: 12px; /* ADD */
@@ -174,7 +173,7 @@ body {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--overlay);
   border-radius: var(--radius);
   color: var(--muted);
   transition: transform 0.3s ease;
@@ -186,14 +185,13 @@ body {
 
 .thumb {
   background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
-  height: 160px;
+  opacity: 90%;
+  height: 300px;
   border-radius: 10px;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display:inline flow-root;
   font-weight: 600;
-  margin-bottom: 10px;
+  padding: 10px 40px;
 }
 
 .expand {
@@ -291,6 +289,10 @@ footer {
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+#submitBtn {
+  background-color: var(--accent-1);
 }
 
 /* ============================================
@@ -480,8 +482,6 @@ footer {
   }
   .topnav {
     top: 15px;
-    left: 16px;
-    right: 16px;
     padding: 10px 16px; /* ADD THIS LINE */
   }
   
